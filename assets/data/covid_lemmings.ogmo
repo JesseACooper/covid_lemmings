@@ -1,0 +1,34 @@
+{
+  "name": "Covid_Lemmings",
+  "ogmoVersion": "3.3.0",
+  "levelPaths": ["."],
+  "backgroundColor": "#282c34ff",
+  "gridColor": "#3c4049cc",
+  "anglesRadians": false,
+  "directoryDepth": 5,
+  "layerGridDefaultSize": {"x": 32, "y": 32},
+  "levelDefaultSize": {"x": 320, "y": 240},
+  "levelMinSize": {"x": 1280, "y": 960},
+  "levelMaxSize": {"x": 1280, "y": 960},
+  "levelValues": [],
+  "defaultExportMode": ".json",
+  "compactExport": false,
+  "externalScript": "",
+  "playCommand": "",
+  "entityTags": [],
+  "layers": [
+    {
+      "definition": "tile",
+      "name": "tiles",
+      "gridSize": {"x": 32, "y": 32},
+      "exportID": "47051911",
+      "exportMode": 0,
+      "arrayMode": 0,
+      "defaultTileset": "tiles"
+    }
+  ],
+  "entities": [],
+  "tilesets": [
+    {"label": "tiles", "path": "../images/tiles.png", "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAAAgBAMAAABnUW7GAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAA9QTFRFAAAA/wAAAAD//wD/AP8AQsSMlwAAAAV0Uk5TAP////8c0CZSAAAAL0lEQVR4nGNgQAOCaEAJDRijARc0gG7eqIGjBo4aOGrgqIGjBo4aOGrgqIFDykAAbbxUELd+TL0AAAAASUVORK5CYII=", "tileWidth": 32, "tileHeight": 32, "tileSeparationX": 0, "tileSeparationY": 0}
+  ]
+}
