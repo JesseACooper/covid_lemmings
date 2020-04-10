@@ -16,7 +16,8 @@
       "gridCellsY": 15,
       "entities": [
         {"name": "walker", "id": 0, "_eid": "53210649", "x": 128, "y": 64, "originX": 0, "originY": 0},
-        {"name": "walker", "id": 1, "_eid": "53210649", "x": 448, "y": 832, "originX": 0, "originY": 0}
+        {"name": "walker", "id": 1, "_eid": "53210649", "x": 448, "y": 832, "originX": 0, "originY": 0},
+        {"name": "walker", "id": 2, "_eid": "53210649", "x": 960, "y": 256, "originX": 0, "originY": 0}
       ]
     },
     {
