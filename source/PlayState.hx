@@ -1,5 +1,6 @@
 package;
 
+import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.tile.FlxTilemap;
@@ -10,7 +11,7 @@ class PlayState extends FlxState
 {
 	var mapTiles:FlxOgmo3Loader;
 	var map:FlxTilemap;
-	var walkers:Array<Walker>;
+	var walkers:FlxTypedGroup<Walker>;
 
 	override public function create()
 	{
@@ -23,10 +24,9 @@ class PlayState extends FlxState
 		map.setTileProperties(4, FlxObject.ANY);
 		add(map);
 
-		walkers = new Array<Walker>();
+		walkers = new FlxTypedGroup<Walker>();
+		add(walkers);
 		mapTiles.loadEntities(placeWalkers, "walkers");
-
-		for (i in 0...walkers.length) add(walkers[i]);
 
 		super.create();
 	}
@@ -34,13 +34,23 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
-		for (i in 0...walkers.length) FlxG.collide(walkers[i], map);
+		walkers.forEachAlive(function (walker) {
+			if (walker.isOnScreen()) {
+				FlxG.collide(walker, map);
+			} else {
+				walker.kill();
+			}
+		});
+
+		if (walkers.countLiving() <= 0) {
+			FlxG.switchState(new WinState());
+		}
 	}
 
 	public function placeWalkers(entity:EntityData) {
 		if (entity.name == "walker") {
 			var walker = new Walker(entity.x, entity.y);
-			walkers.push(walker);
+			walkers.add(walker);
 		}
 	}
 }

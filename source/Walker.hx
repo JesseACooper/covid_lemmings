@@ -32,7 +32,13 @@ class Walker extends FlxSprite
 
   function updateMovement(timer:FlxTimer) {
     // choose a new direction
-    var newDirection = DIRECTIONS[Std.random(DIRECTIONS.length)];
+    var directionIndex = Std.random(DIRECTIONS.length);
+
+    // Uncomment to make testing easier while we have undirected random walking
+    // if (directionIndex == 0 || directionIndex == 3) {
+    //   directionIndex = 1;
+    // }
+    var newDirection = DIRECTIONS[directionIndex];
     velocity.x = newDirection["x"];
     velocity.y = newDirection["y"];
     facing = newDirection["facing"];
@@ -40,16 +46,16 @@ class Walker extends FlxSprite
 
   override function update(elapsed: Float) {
     switch (facing)
-     {
-         case FlxObject.LEFT:
-             animation.play("left");
-         case FlxObject.RIGHT:
-             animation.play("right");
-         case FlxObject.UP:
-             animation.play("up");
-         case FlxObject.DOWN:
-             animation.play("down");
-     }
+    {
+      case FlxObject.LEFT:
+        animation.play("left");
+      case FlxObject.RIGHT:
+        animation.play("right");
+      case FlxObject.UP:
+        animation.play("up");
+      case FlxObject.DOWN:
+        animation.play("down");
+    }
     super.update(elapsed);
   }
 }
