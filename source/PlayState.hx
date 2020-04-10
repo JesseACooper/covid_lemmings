@@ -1,5 +1,6 @@
 package;
 
+import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.tile.FlxTilemap;
 import flixel.addons.editors.ogmo.FlxOgmo3Loader;
@@ -13,8 +14,8 @@ class PlayState extends FlxState
 
 	override public function create()
 	{
-		mapTiles = new FlxOgmo3Loader(AssetPaths.covid_lemmings__ogmo, AssetPaths.map_001__json);
-		map = mapTiles.loadTilemap(AssetPaths.tiles__png, "tiles");
+		mapTiles = new FlxOgmo3Loader(AssetPaths.covid_lemmings__ogmo, AssetPaths.map_002__json);
+		map = mapTiles.loadTilemap(AssetPaths.tiles64x64__png, "tiles");
 		map.follow();
 		map.setTileProperties(1, FlxObject.NONE);
 		map.setTileProperties(2, FlxObject.ANY);
@@ -23,7 +24,8 @@ class PlayState extends FlxState
 		add(map);
 
 		walkers = new Array<Walker>();
-		walkers.push(new Walker(100, 100));
+		mapTiles.loadEntities(placeWalkers, "walkers");
+
 		for (i in 0...walkers.length) add(walkers[i]);
 
 		super.create();
@@ -32,5 +34,13 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
+		for (i in 0...walkers.length) FlxG.collide(walkers[i], map);
+	}
+
+	public function placeWalkers(entity:EntityData) {
+		if (entity.name == "walker") {
+			var walker = new Walker(entity.x, entity.y);
+			walkers.push(walker);
+		}
 	}
 }

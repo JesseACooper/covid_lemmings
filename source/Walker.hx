@@ -7,14 +7,14 @@ import flixel.FlxSprite;
 
 class Walker extends FlxSprite
 {
-  static inline var SPEED:Float = 200;
+  static inline var SPEED:Float = 64;
   var timer:FlxTimer;
 
   static var DIRECTIONS = [ 
-    ["x" => 200, "y" => 0, "facing" => FlxObject.RIGHT],
-    ["x" => 0, "y" => 200, "facing" => FlxObject.DOWN],
-    ["x" => -200, "y" => 0, "facing" => FlxObject.LEFT],
-    ["x" => 0, "y" => -200, "facing" => FlxObject.UP]
+    ["x" => 64, "y" => 0, "facing" => FlxObject.RIGHT],
+    ["x" => 0, "y" => 64, "facing" => FlxObject.DOWN],
+    ["x" => -64, "y" => 0, "facing" => FlxObject.LEFT],
+    ["x" => 0, "y" => -64, "facing" => FlxObject.UP]
   ];
 
 
@@ -26,7 +26,6 @@ class Walker extends FlxSprite
     animation.add("left",  [for (i in 1...9) i + (13 * 9)]);
     animation.add("down",  [for (i in 1...9) i + (13 * 10)]);
     animation.add("right", [for (i in 1...9) i + (13 * 11)]);
-    drag.x = drag.y = 1600;
     timer = new FlxTimer();
     timer.start(1.0, updateMovement, 0);
   }
