@@ -9,6 +9,7 @@ class PlayState extends FlxState
 {
 	var mapTiles:FlxOgmo3Loader;
 	var map:FlxTilemap;
+	var walkers:Array<Walker>;
 
 	override public function create()
 	{
@@ -20,6 +21,11 @@ class PlayState extends FlxState
 		map.setTileProperties(3, FlxObject.NONE);
 		map.setTileProperties(4, FlxObject.ANY);
 		add(map);
+
+		walkers = new Array<Walker>();
+		walkers.push(new Walker(100, 100));
+		for (i in 0...walkers.length) add(walkers[i]);
+
 		super.create();
 	}
 
