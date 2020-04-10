@@ -1,5 +1,6 @@
 package;
 
+import flixel.math.FlxPoint;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -12,6 +13,8 @@ class PlayState extends FlxState
 	var mapTiles:FlxOgmo3Loader;
 	var map:FlxTilemap;
 	var walkers:FlxTypedGroup<Walker>;
+	var roadCoords:Array<FlxPoint>;
+	var impassibleCoords:Array<FlxPoint>;
 
 	override public function create()
 	{
@@ -23,6 +26,9 @@ class PlayState extends FlxState
 		map.setTileProperties(3, FlxObject.NONE);
 		map.setTileProperties(4, FlxObject.ANY);
 		add(map);
+
+		roadCoords = map.getTileCoords(2, false);
+		impassibleCoords = map.getTileCoords(4, false);
 
 		walkers = new FlxTypedGroup<Walker>();
 		add(walkers);
@@ -36,7 +42,7 @@ class PlayState extends FlxState
 		super.update(elapsed);
 		walkers.forEachAlive(function (walker) {
 			if (walker.isOnScreen()) {
-				FlxG.collide(walker, map);
+				// FlxG.collide(walker, map);
 			} else {
 				walker.kill();
 			}
@@ -50,6 +56,7 @@ class PlayState extends FlxState
 	public function placeWalkers(entity:EntityData) {
 		if (entity.name == "walker") {
 			var walker = new Walker(entity.x, entity.y);
+			walker.setMapState(roadCoords, impassibleCoords);
 			walkers.add(walker);
 		}
 	}

@@ -1,14 +1,16 @@
 package;
 
+import flixel.math.FlxPoint;
 import flixel.FlxObject;
 import flixel.util.FlxTimer;
-import flixel.util.FlxColor;
 import flixel.FlxSprite;
 
 class Walker extends FlxSprite
 {
   static inline var SPEED:Float = 64;
   var timer:FlxTimer;
+  var roadCoords:Array<FlxPoint>;
+  var impassibleCoords:Array<FlxPoint>;
 
   static var DIRECTIONS = [ 
     ["x" => 64, "y" => 0, "facing" => FlxObject.RIGHT],
@@ -31,14 +33,69 @@ class Walker extends FlxSprite
   }
 
   function updateMovement(timer:FlxTimer) {
+    var canMoveUp = true;
+    var canMoveLeft = true;
+    var canMoveDown = true;
+    var canMoveRight = true;
+    if (roadCoords != null && impassibleCoords != null) {
+
+      for (i in 0...roadCoords.length) {
+        trace("WalkerCoord: (" + x + ", " + y + ")" + " | RoadCoord: (" + roadCoords[i].x + ", " + roadCoords[i].y + ")");
+        if (roadCoords[i].x == x - 64 && roadCoords[i].y == y) {
+          trace("Adjacent left found!!");
+          canMoveLeft = false;
+        }
+        if (roadCoords[i].x == x + 64 && roadCoords[i].y == y) {
+          trace("Adjacent right found!!");
+          canMoveRight = false;
+        }
+        if (roadCoords[i].y == y - 64 && roadCoords[i].x == x) {
+          trace("Adjacent up found!!");
+          canMoveUp = false;
+        }
+        if (roadCoords[i].y == y + 64 && roadCoords[i].x == x) {
+          trace("Adjacent found!!");
+          canMoveDown = false;
+        }
+      }
+
+      for (i in 0...roadCoords.length) {
+        trace("WalkerCoord: (" + x + ", " + y + ")" + " | ImpassibleCoord: (" + impassibleCoords[i].x + ", " + impassibleCoords[i].y + ")");
+        if (impassibleCoords[i].x == x - 64 && impassibleCoords[i].y == y) {
+          trace("Adjacent left found!!");
+          canMoveLeft = false;
+        }
+        if (impassibleCoords[i].x == x + 64 && impassibleCoords[i].y == y) {
+          trace("Adjacent right found!!");
+          canMoveRight = false;
+        }
+        if (impassibleCoords[i].y == y - 64 && impassibleCoords[i].x == x) {
+          trace("Adjacent up found!!");
+          canMoveUp = false;
+        }
+        if (impassibleCoords[i].y == y + 64 && impassibleCoords[i].x == x) {
+          trace("Adjacent found!!");
+          canMoveDown = false;
+        }
+      }
+    }
+
+    var validDirections = [];
+    if (canMoveUp) validDirections.push(DIRECTIONS[0]);
+    if (canMoveLeft) validDirections.push(DIRECTIONS[1]);
+    if (canMoveDown) validDirections.push(DIRECTIONS[2]);
+    if (canMoveRight) validDirections.push(DIRECTIONS[3]);
+
+    // If you're trapped, just keep walking right
+    if (validDirections.length <= 0) validDirections.push(DIRECTIONS[3]);
     // choose a new direction
-    var directionIndex = Std.random(DIRECTIONS.length);
+    var directionIndex = Std.random(validDirections.length);
 
     // Uncomment to make testing easier while we have undirected random walking
     // if (directionIndex == 0 || directionIndex == 3) {
     //   directionIndex = 1;
     // }
-    var newDirection = DIRECTIONS[directionIndex];
+    var newDirection = validDirections[directionIndex];
     velocity.x = newDirection["x"];
     velocity.y = newDirection["y"];
     facing = newDirection["facing"];
@@ -57,5 +114,10 @@ class Walker extends FlxSprite
         animation.play("down");
     }
     super.update(elapsed);
+  }
+
+  public function setMapState(roadCoords:Array<FlxPoint>, impassibleCoords:Array<FlxPoint>) {
+    this.roadCoords = roadCoords;
+    this.impassibleCoords = impassibleCoords;
   }
 }
