@@ -26,6 +26,10 @@ class Walker extends FlxSprite
     animation.add("left",  [for (i in 1...9) i + (13 * 9)]);
     animation.add("down",  [for (i in 1...9) i + (13 * 10)]);
     animation.add("right", [for (i in 1...9) i + (13 * 11)]);
+
+    setSize(56, 56);
+    offset.set(8, 8);
+
     timer = new FlxTimer();
     timer.start(1.0, updateMovement, 0);
   }

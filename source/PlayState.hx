@@ -16,7 +16,7 @@ class PlayState extends FlxState
 	override public function create()
 	{
 		mapTiles = new FlxOgmo3Loader(AssetPaths.covid_lemmings__ogmo, AssetPaths.map_002__json);
-		map = mapTiles.loadTilemap(AssetPaths.tiles64x64__png, "tiles");
+		map = mapTiles.loadTilemap(AssetPaths.tiles64x64Fancy__png, "tiles");
 		map.follow();
 		map.setTileProperties(1, FlxObject.NONE);
 		map.setTileProperties(2, FlxObject.ANY);
