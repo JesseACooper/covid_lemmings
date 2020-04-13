@@ -17,6 +17,7 @@ class PlayState extends FlxState
 	var walkers:FlxTypedGroup<Walker>;
 	var junctions:FlxTypedGroup<Junction>;
 	var mayor:Mayor;
+	var trail:FlxTrail;
 
 	override public function create()
 	{
@@ -38,6 +39,10 @@ class PlayState extends FlxState
 
 		mayor = new Mayor();
 		mayor.visible = false;
+
+		trail = new FlxTrail(mayor, AssetPaths.lightfootcutout__png, 12, 0, 0.4, 0.02);
+
+		add(trail);
 		add(mayor);
 		
 		super.create();
@@ -75,7 +80,7 @@ class PlayState extends FlxState
 			var x = tileCoordX * 64 + 15; // fudge for narrow sprite, ick
 			var y = tileCoordY * 64;
 			mayor.visible = true;
-			FlxTween.tween(mayor, { x: x, y: y }, 1, { ease: FlxEase.bounceOut });
+			FlxTween.tween(mayor, { x: x, y: y }, 0.7, { ease: FlxEase.elasticOut });
 		}
 
 	}
