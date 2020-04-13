@@ -25,16 +25,6 @@
           "originY": 0,
           "values": {"initial_direction": "right"}
         },
-        {
-          "name": "walker",
-          "id": 2,
-          "_eid": "53210649",
-          "x": 960,
-          "y": 256,
-          "originX": 0,
-          "originY": 0,
-          "values": {"initial_direction": "up"}
-        },
         {"name": "junction", "id": 3, "_eid": "73798971", "x": 896, "y": 256, "originX": 0, "originY": 0},
         {"name": "junction", "id": 4, "_eid": "73798971", "x": 960, "y": 256, "originX": 0, "originY": 0},
         {"name": "junction", "id": 5, "_eid": "73798971", "x": 896, "y": 64, "originX": 0, "originY": 0},
@@ -61,16 +51,6 @@
         },
         {
           "name": "walker",
-          "id": 19,
-          "_eid": "53210649",
-          "x": 896,
-          "y": 704,
-          "originX": 0,
-          "originY": 0,
-          "values": {"initial_direction": "left"}
-        },
-        {
-          "name": "walker",
           "id": 20,
           "_eid": "53210649",
           "x": 64,
@@ -84,16 +64,6 @@
           "id": 21,
           "_eid": "53210649",
           "x": 704,
-          "y": 64,
-          "originX": 0,
-          "originY": 0,
-          "values": {"initial_direction": "left"}
-        },
-        {
-          "name": "walker",
-          "id": 22,
-          "_eid": "53210649",
-          "x": 1152,
           "y": 64,
           "originX": 0,
           "originY": 0,

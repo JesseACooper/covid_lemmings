@@ -15,10 +15,10 @@ class Walker extends FlxSprite
   public var inJunction:Bool = false;
 
   static var DIRECTIONS = [ 
-    ["x" => 64, "y" => 0, "facing" => FlxObject.RIGHT],
-    ["x" => 0, "y" => 64, "facing" => FlxObject.DOWN],
-    ["x" => -64, "y" => 0, "facing" => FlxObject.LEFT],
-    ["x" => 0, "y" => -64, "facing" => FlxObject.UP]
+    ["x" => 32, "y" => 0, "facing" => FlxObject.RIGHT],
+    ["x" => 0, "y" => 32, "facing" => FlxObject.DOWN],
+    ["x" => -32, "y" => 0, "facing" => FlxObject.LEFT],
+    ["x" => 0, "y" => -32, "facing" => FlxObject.UP]
   ];
 
 
