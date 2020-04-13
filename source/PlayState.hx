@@ -1,5 +1,8 @@
 package;
 
+import flixel.util.FlxColor;
+import flixel.util.FlxTimer;
+import flixel.text.FlxText;
 import flixel.addons.effects.FlxTrail;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
@@ -17,6 +20,8 @@ class PlayState extends FlxState
 	var walkers:FlxTypedGroup<Walker>;
 	var junctions:FlxTypedGroup<Junction>;
 	var mayor:Mayor;
+	var speechTimer:FlxTimer;
+	var speechText:FlxText;
 
 	override public function create()
 	{
@@ -67,6 +72,11 @@ class PlayState extends FlxState
 	}
 
 	function placeLori() {
+		removeText();
+		if (speechTimer != null) {
+			speechTimer.cancel();
+		}
+
 		var tileCoordX:Int = Math.floor(FlxG.mouse.x / 64);
 		var tileCoordY:Int = Math.floor(FlxG.mouse.y / 64);
 		var tileUnderMouse = map.getTile(tileCoordX, tileCoordY);
@@ -75,9 +85,27 @@ class PlayState extends FlxState
 			var x = tileCoordX * 64 + 15; // fudge for narrow sprite, ick
 			var y = tileCoordY * 64;
 			mayor.visible = true;
-			FlxTween.tween(mayor, { x: x, y: y }, 1, { ease: FlxEase.bounceOut });
+			FlxTween.tween(mayor, { x: x, y: y }, 1, { ease: FlxEase.bounceOut, onComplete: showText.bind(_, x, y) });
 		}
 
+	}
+
+	function showText(tween:FlxTween, x:Float, y: Float) {
+		speechText = new FlxText(x - 50, y - 15, 0, "Stay home, save lives", 18);
+		speechText.setBorderStyle(FlxTextBorderStyle.SHADOW, FlxColor.BLACK, 4);
+		add(speechText);
+		
+    speechTimer = new FlxTimer();
+    speechTimer.start(3.0, hideText, 0);
+	}
+
+	// Gross hack to let removeText() be callable from places without a timer
+	function hideText(timer:FlxTimer) {
+		removeText();
+	}
+
+	function removeText() {
+		remove(speechText);
 	}
 
 	function checkJunctionEntry(walker:Walker) {
