@@ -11,7 +11,7 @@ class WinState extends FlxState
 
 	override public function create()
 	{
-    var victoryText = new flixel.text.FlxText(0, 0, 0, "You win!", 64);
+    var victoryText = new flixel.text.FlxText(0, 0, 0, "Now that's leadership.", 64);
     victoryText.screenCenter();
     add(victoryText);
     playButton = new FlxButton(0, 0, "Play again?", clickPlay);

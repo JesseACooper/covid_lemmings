@@ -9,5 +9,4 @@ class Mayor extends FlxExtendedSprite {
     loadGraphic(AssetPaths.lightfootcutout__png, false, 64, 64);
     immovable = true;
   }
-
 }
