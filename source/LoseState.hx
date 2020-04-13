@@ -5,13 +5,13 @@ import flixel.FlxG;
 import flixel.ui.FlxButton;
 import flixel.FlxState;
 
-class WinState extends FlxState
+class LoseState extends FlxState
 {
   var playButton:FlxButton;
 
 	override public function create()
 	{
-    var victoryText = new flixel.text.FlxText(0, 0, 0, "You win!", 64);
+    var victoryText = new flixel.text.FlxText(0, 0, 0, "You lose...", 64);
     victoryText.screenCenter();
     add(victoryText);
     playButton = new FlxButton(0, 0, "Play again?", clickPlay);

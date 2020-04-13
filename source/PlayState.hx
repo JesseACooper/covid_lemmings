@@ -45,6 +45,7 @@ class PlayState extends FlxState
 		super.update(elapsed);
 		walkers.forEachAlive(function (walker) {
 			if (walker.isOnScreen()) {
+				FlxG.collide(walker, walkers, (walker, _) -> FlxG.switchState(new LoseState()));
 				FlxG.collide(walker, map, (walker, _) -> walker.chooseRandomDirection());
 				checkJunctionEntry(walker);
 			} else {
