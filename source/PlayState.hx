@@ -12,6 +12,7 @@ class PlayState extends FlxState
 	var mapTiles:FlxOgmo3Loader;
 	var map:FlxTilemap;
 	var walkers:FlxTypedGroup<Walker>;
+	var junctions:FlxTypedGroup<Junction>;
 
 	override public function create()
 	{
@@ -27,7 +28,9 @@ class PlayState extends FlxState
 		walkers = new FlxTypedGroup<Walker>();
 		add(walkers);
 		mapTiles.loadEntities(placeWalkers, "walkers");
-
+		junctions = new FlxTypedGroup<Junction>();
+		add(junctions);
+		mapTiles.loadEntities(placeJunctions, "walkers");
 		super.create();
 	}
 
@@ -36,7 +39,8 @@ class PlayState extends FlxState
 		super.update(elapsed);
 		walkers.forEachAlive(function (walker) {
 			if (walker.isOnScreen()) {
-				FlxG.collide(walker, map);
+				FlxG.collide(walker, map, (walker, _) -> walker.chooseRandomDirection());
+				checkJunctionEntry(walker);
 			} else {
 				walker.kill();
 			}
@@ -47,10 +51,21 @@ class PlayState extends FlxState
 		}
 	}
 
+	function checkJunctionEntry(walker:Walker) {
+		walker.inJunction = FlxG.overlap(walker, junctions);
+	}
+
 	public function placeWalkers(entity:EntityData) {
 		if (entity.name == "walker") {
 			var walker = new Walker(entity.x, entity.y);
 			walkers.add(walker);
+		}
+	}
+
+	public function placeJunctions(entity:EntityData) {
+		if (entity.name == "junction") {
+			var junction = new Junction(entity.x, entity.y);
+			junctions.add(junction);
 		}
 	}
 }

@@ -17,7 +17,24 @@
       "entities": [
         {"name": "walker", "id": 0, "_eid": "53210649", "x": 128, "y": 64, "originX": 0, "originY": 0},
         {"name": "walker", "id": 1, "_eid": "53210649", "x": 448, "y": 832, "originX": 0, "originY": 0},
-        {"name": "walker", "id": 2, "_eid": "53210649", "x": 960, "y": 256, "originX": 0, "originY": 0}
+        {"name": "walker", "id": 2, "_eid": "53210649", "x": 960, "y": 256, "originX": 0, "originY": 0},
+        {"name": "junction", "id": 3, "_eid": "73798971", "x": 896, "y": 256, "originX": 0, "originY": 0},
+        {"name": "junction", "id": 4, "_eid": "73798971", "x": 960, "y": 256, "originX": 0, "originY": 0},
+        {"name": "junction", "id": 5, "_eid": "73798971", "x": 896, "y": 64, "originX": 0, "originY": 0},
+        {"name": "junction", "id": 6, "_eid": "73798971", "x": 960, "y": 64, "originX": 0, "originY": 0},
+        {"name": "junction", "id": 7, "_eid": "73798971", "x": 512, "y": 256, "originX": 0, "originY": 0},
+        {"name": "junction", "id": 8, "_eid": "73798971", "x": 448, "y": 256, "originX": 0, "originY": 0},
+        {"name": "junction", "id": 9, "_eid": "73798971", "x": 512, "y": 512, "originX": 0, "originY": 0},
+        {"name": "junction", "id": 10, "_eid": "73798971", "x": 576, "y": 512, "originX": 0, "originY": 0},
+        {"name": "junction", "id": 11, "_eid": "73798971", "x": 576, "y": 704, "originX": 0, "originY": 0},
+        {"name": "junction", "id": 12, "_eid": "73798971", "x": 512, "y": 704, "originX": 0, "originY": 0},
+        {"name": "junction", "id": 13, "_eid": "73798971", "x": 448, "y": 768, "originX": 0, "originY": 0},
+        {"name": "junction", "id": 14, "_eid": "73798971", "x": 384, "y": 768, "originX": 0, "originY": 0},
+        {"name": "junction", "id": 15, "_eid": "73798971", "x": 512, "y": 768, "originX": 0, "originY": 0},
+        {"name": "junction", "id": 16, "_eid": "73798971", "x": 448, "y": 512, "originX": 0, "originY": 0},
+        {"name": "walker", "id": 17, "_eid": "53210649", "x": 320, "y": 256, "originX": 0, "originY": 0},
+        {"name": "walker", "id": 18, "_eid": "53210649", "x": 896, "y": 512, "originX": 0, "originY": 0},
+        {"name": "walker", "id": 19, "_eid": "53210649", "x": 896, "y": 704, "originX": 0, "originY": 0}
       ]
     },
     {

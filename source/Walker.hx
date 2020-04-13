@@ -10,6 +10,9 @@ class Walker extends FlxSprite
   static inline var SPEED:Float = 64;
   var timer:FlxTimer;
 
+  public var leavingJunction:Bool = false;
+  public var inJunction:Bool = false;
+
   static var DIRECTIONS = [ 
     ["x" => 64, "y" => 0, "facing" => FlxObject.RIGHT],
     ["x" => 0, "y" => 64, "facing" => FlxObject.DOWN],
@@ -30,11 +33,25 @@ class Walker extends FlxSprite
     setSize(56, 56);
     offset.set(8, 8);
 
+    chooseRandomDirection();
+
     timer = new FlxTimer();
     timer.start(1.0, updateMovement, 0);
   }
 
   function updateMovement(timer:FlxTimer) {
+    // move out of a junction
+    if (inJunction) {
+      if (!leavingJunction) {
+         chooseRandomDirection();
+         leavingJunction = true;
+      }
+    } else {
+      inJunction = leavingJunction = false;
+    }
+  }
+
+  public function chooseRandomDirection() {
     // choose a new direction
     var directionIndex = Std.random(DIRECTIONS.length);
 
