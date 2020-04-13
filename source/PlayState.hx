@@ -91,6 +91,9 @@ class PlayState extends FlxState
 	}
 
 	function showText(tween:FlxTween, x:Float, y: Float) {
+		if (speechText != null) {
+			remove(speechText);
+		}
 		speechText = new FlxText(x - 50, y - 15, 0, "Stay home, save lives", 18);
 		speechText.setBorderStyle(FlxTextBorderStyle.SHADOW, FlxColor.BLACK, 4);
 		add(speechText);
