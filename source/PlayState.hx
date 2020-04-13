@@ -1,5 +1,8 @@
 package;
 
+import flixel.addons.effects.FlxTrail;
+import flixel.tweens.FlxTween;
+import flixel.tweens.FlxEase;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -47,6 +50,7 @@ class PlayState extends FlxState
 			if (walker.isOnScreen()) {
 				FlxG.collide(walker, walkers, (walker, _) -> FlxG.switchState(new LoseState()));
 				FlxG.collide(walker, map, (walker, _) -> walker.chooseRandomDirection());
+				FlxG.collide(walker, mayor, (walker, mayor) -> walker.turnAround());
 				checkJunctionEntry(walker);
 			} else {
 				walker.kill();
@@ -68,9 +72,10 @@ class PlayState extends FlxState
 		var tileUnderMouse = map.getTile(tileCoordX, tileCoordY);
 		trace("placing lori at " + tileCoordX + ", " + tileCoordY);
 		if (tileUnderMouse == 1) {
-			mayor.x = tileCoordX * 64 + 15; // fudge for narrow sprite, ick
-			mayor.y = tileCoordY * 64;
+			var x = tileCoordX * 64 + 15; // fudge for narrow sprite, ick
+			var y = tileCoordY * 64;
 			mayor.visible = true;
+			FlxTween.tween(mayor, { x: x, y: y }, 1, { ease: FlxEase.bounceOut });
 		}
 
 	}

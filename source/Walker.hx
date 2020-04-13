@@ -37,6 +37,7 @@ class Walker extends FlxSprite
 
     timer = new FlxTimer();
     timer.start(1.0, updateMovement, 0);
+    elasticity = 1;
   }
 
   function updateMovement(timer:FlxTimer) {
@@ -63,6 +64,19 @@ class Walker extends FlxSprite
     velocity.x = newDirection["x"];
     velocity.y = newDirection["y"];
     facing = newDirection["facing"];
+  }
+
+  public function turnAround() {
+    switch (facing) {
+      case FlxObject.LEFT:
+        facing = FlxObject.RIGHT;
+      case FlxObject.RIGHT:
+        facing = FlxObject.LEFT;
+      case FlxObject.UP:
+        facing = FlxObject.DOWN;
+      case FlxObject.DOWN:
+        facing = FlxObject.UP;
+    }
   }
 
   override function update(elapsed: Float) {
