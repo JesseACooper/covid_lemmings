@@ -16,6 +16,7 @@ class WinState extends FlxState
     add(victoryText);
     playButton = new FlxButton(0, 0, "Play again?", clickPlay);
     playButton.screenCenter();
+    playButton.setPosition(playButton.getPosition().x, playButton.getPosition().y + 65);
     add(playButton);
 		super.create();
 	}
