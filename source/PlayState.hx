@@ -13,6 +13,7 @@ class PlayState extends FlxState
 	var map:FlxTilemap;
 	var walkers:FlxTypedGroup<Walker>;
 	var junctions:FlxTypedGroup<Junction>;
+	var mayor:Mayor;
 
 	override public function create()
 	{
@@ -31,6 +32,11 @@ class PlayState extends FlxState
 		junctions = new FlxTypedGroup<Junction>();
 		add(junctions);
 		mapTiles.loadEntities(placeJunctions, "walkers");
+
+		mayor = new Mayor();
+		mayor.visible = false;
+		add(mayor);
+		
 		super.create();
 	}
 
@@ -46,9 +52,26 @@ class PlayState extends FlxState
 			}
 		});
 
+		if (FlxG.mouse.justReleased) {
+			placeLori();
+		}
+
 		if (walkers.countLiving() <= 0) {
 			FlxG.switchState(new WinState());
 		}
+	}
+
+	function placeLori() {
+		var tileCoordX:Int = Math.floor(FlxG.mouse.x / 64);
+		var tileCoordY:Int = Math.floor(FlxG.mouse.y / 64);
+		var tileUnderMouse = map.getTile(tileCoordX, tileCoordY);
+		trace("placing lori at " + tileCoordX + ", " + tileCoordY);
+		if (tileUnderMouse == 1) {
+			mayor.x = tileCoordX * 64 + 15; // fudge for narrow sprite, ick
+			mayor.y = tileCoordY * 64;
+			mayor.visible = true;
+		}
+
 	}
 
 	function checkJunctionEntry(walker:Walker) {
