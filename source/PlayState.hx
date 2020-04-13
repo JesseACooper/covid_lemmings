@@ -86,7 +86,18 @@ class PlayState extends FlxState
 
 	public function placeWalkers(entity:EntityData) {
 		if (entity.name == "walker") {
-			var walker = new Walker(entity.x, entity.y);
+			var startDirection = FlxObject.RIGHT;
+			switch (entity.values.initial_direction) {
+				case "up":
+					startDirection = FlxObject.UP;
+				case "down":
+					startDirection = FlxObject.DOWN;
+				case "left":
+					startDirection = FlxObject.LEFT;
+				case "right":
+					startDirection = FlxObject.RIGHT;
+			}
+			var walker = new Walker(entity.x, entity.y, startDirection);
 			walkers.add(walker);
 		}
 	}

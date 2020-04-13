@@ -1,5 +1,6 @@
 package;
 
+import flixel.math.FlxRandom;
 import flixel.FlxObject;
 import flixel.util.FlxTimer;
 import flixel.util.FlxColor;
@@ -21,7 +22,7 @@ class Walker extends FlxSprite
   ];
 
 
-  public function new(x:Float = 0, y:Float = 0) {
+  public function new(x:Float = 0, y:Float = 0, initialFacing = FlxObject.RIGHT) {
     super(x, y);
     // makeGraphic(16, 16, FlxColor.BLUE);
     loadGraphic(AssetPaths.blue1__png, true, 64, 64);
@@ -33,8 +34,7 @@ class Walker extends FlxSprite
     setSize(56, 56);
     offset.set(8, 8);
 
-    chooseRandomDirection();
-
+    setDirectionFromFacing(initialFacing);
     timer = new FlxTimer();
     timer.start(1.0, updateMovement, 0);
     elasticity = 1;
@@ -50,6 +50,13 @@ class Walker extends FlxSprite
     } else {
       inJunction = leavingJunction = false;
     }
+  }
+
+  public function setDirectionFromFacing(newFacing:Int = FlxObject.RIGHT) {
+    var newDirection = Lambda.find(DIRECTIONS, (dir) -> return dir["facing"] == newFacing);
+    velocity.x = newDirection["x"];
+    velocity.y = newDirection["y"];
+    facing = newDirection["facing"];
   }
 
   public function chooseRandomDirection() {

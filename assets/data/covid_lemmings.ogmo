@@ -70,7 +70,14 @@
       "nodeDisplay": 0,
       "nodeGhost": true,
       "tags": [],
-      "values": []
+      "values": [
+        {
+          "name": "initial_direction",
+          "definition": "Enum",
+          "choices": ["up", "down", "right", "left"],
+          "defaults": 0
+        }
+      ]
     },
     {
       "exportID": "73798971",
